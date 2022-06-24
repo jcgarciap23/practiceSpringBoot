@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.repository;
 
 import com.example.demo.domain.Student;
 import org.springframework.data.repository.CrudRepository;
@@ -10,5 +10,7 @@ import java.util.Optional;
 public interface Student_Repository extends CrudRepository<Student, Long> {
 
     Optional<Student> findStudentByEmail(String email);
+
+    Optional<Student> findStudentById(Long studentId);
 
 }

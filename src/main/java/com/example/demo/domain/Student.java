@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -11,21 +12,14 @@ import java.time.Period;
                 @UniqueConstraint(name = "student_email_unique", columnNames = "email") //Control total de atributos unique, controlar el id que se genera
         }
 )
-public class Student {
+public class Student implements Serializable {
 
     @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1                  //Define valor por defecto de incremento
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(
             name = "id",
-            updatable = false                   //Nadie pueda modificar el valor de la columna
+            nullable = false,
+            updatable = false
     )
     private Long id;
 
